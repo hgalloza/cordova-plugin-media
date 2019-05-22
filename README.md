@@ -467,7 +467,7 @@ Set the volume for an audio file.
 
 ### Supported Platforms
 
-- Android
+- Android (supports independent Left/Right volume control e.g. media.setVolume(volume_left, volume_right);
 - iOS
 
 ### Quick Example
