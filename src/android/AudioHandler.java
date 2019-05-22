@@ -147,7 +147,7 @@ public class AudioHandler extends CordovaPlugin {
             this.stopPlayingAudio(args.getString(0));
         } else if (action.equals("setVolume")) {
            try {
-               this.setVolume(args.getString(0), Float.parseFloat(args.getString(1)));
+               this.setVolume(args.getString(0), Float.parseFloat(args.getString(1)), Float.parseFloat(args.getString(2)));
            } catch (NumberFormatException nfe) {
                //no-op
            }
@@ -476,12 +476,12 @@ public class AudioHandler extends CordovaPlugin {
      * @param id				The id of the audio player
      * @param volume            Volume to adjust to 0.0f - 1.0f
      */
-    public void setVolume(String id, float volume) {
+    public void setVolume(String id, float volume_left, float volume_right) {
         String TAG3 = "AudioHandler.setVolume(): Error : ";
 
         AudioPlayer audio = this.players.get(id);
         if (audio != null) {
-            audio.setVolume(volume);
+            audio.setVolume(volume_left, volume_right);
         } else {
           LOG.e(TAG3,"Unknown Audio Player " + id);
         }

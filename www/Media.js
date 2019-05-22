@@ -163,7 +163,18 @@ Media.prototype.release = function() {
  * Adjust the volume.
  */
 Media.prototype.setVolume = function(volume) {
-    exec(null, null, "Media", "setVolume", [this.id, volume]);
+	if (cordova.platformId === 'android'){
+		if (volume.length==2){
+			exec(null, null, "Media", "setVolume", [this.id, volume[0], volume[1]]);
+		}
+		else{
+			exec(null, null, "Media", "setVolume", [this.id, volume, volume]);
+		}
+	}
+	//backwards compatible
+	else{
+		exec(null, null, "Media", "setVolume", [this.id, volume]);
+	}
 };
 
 /**
