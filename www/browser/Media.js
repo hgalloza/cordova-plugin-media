@@ -241,17 +241,15 @@ Media.prototype.release = function() {
  * Adjust the volume.
  */
 Media.prototype.setVolume = function(volume) {
-    this.node.volume = volume;
+	if (volume.length==undefined){
+		this.node.volume = volume;
+	}
+	else{
+		this.gainNodeL.gain.value = volume[0];
+		this.gainNodeR.gain.value = volume[1];
+	}
 };
 
-/**
-//HG; Adding Left/Right volume control
- * Adjust the volume.
- */
-Media.prototype.setVolumeLR = function(volume) {
-	this.node.gainNodeL.gain.value = volume[0];
-	this.node.gainNodeR.gain.value = volume[1];
-};
 
 /**
  * Audio has status update.
