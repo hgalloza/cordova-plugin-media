@@ -171,6 +171,14 @@ Media.prototype.setVolume = function(volume) {
 			exec(null, null, "Media", "setVolume", [this.id, volume, volume]);
 		}
 	}
+	else if (cordova.platformId === 'browser'){
+		if (volume.length==2){
+			exec(null, null, "Media", "setVolumeLR", [this.id, volume]);
+		}
+		else{
+			exec(null, null, "Media", "setVolume", [this.id, volume]);
+		}
+	}
 	//backwards compatible
 	else{
 		exec(null, null, "Media", "setVolume", [this.id, volume]);
